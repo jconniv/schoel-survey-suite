@@ -1,0 +1,7 @@
+ezdxf
+python-docx
+comtypes
+matplotlib
+pyinstaller
+pyproj
+shapely

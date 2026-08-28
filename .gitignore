@@ -1,0 +1,38 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Compiled applications, installers, and build staging
+build/
+dist/
+release_build/
+release_dist/
+installer_out/
+_sign_test/
+**/build/
+**/dist/
+*.exe
+*.msi
+*.msix
+
+# Certificates and private signing material
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Machine-specific release/update state
+release_exe_path.txt
+update_config.json
+
+# Editor and operating-system files
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

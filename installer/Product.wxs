@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package
+    Name="Schoel Survey Suite"
+    Manufacturer="Schoel Engineering"
+    Version="$(var.ProductVersion)"
+    UpgradeCode="099229d0-e22d-4262-a66e-2875f4fe642e"
+    Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Schoel Survey Suite is already installed." />
+    <MediaTemplate EmbedCab="yes" />`r`n    <Property Id="ROOTDRIVE" Value="C:\" />
+    <Icon Id="SurveySuiteIcon" SourceFile="assets\schoel_logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="SurveySuiteIcon" />
+
+    <Feature Id="MainFeature" Title="Schoel Survey Suite" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+      <ComponentRef Id="StartMenuShortcuts" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <StandardDirectory Id="TARGETDIR">
+      <Directory Id="SCHOELTOOLS" Name="SchoelTools">
+        <Directory Id="APPFOLDER" Name="SchoelSurveySuite" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ProgramMenuSchoel" Name="Schoel Engineering" />
+    </StandardDirectory>
+
+    <StandardDirectory Id="DesktopFolder" />
+
+    <ComponentGroup Id="AppFiles" Directory="APPFOLDER">
+      <Component Guid="802c4642-c6d2-430b-aed3-cdae348cf59d">
+        <File Id="MainExe" Source="$(var.MainExePath)" KeyPath="yes" />
+      </Component>
+      <Component Guid="473dc4f8-4d47-4d91-9466-034ebef3e442">
+        <File Source="version.json" KeyPath="yes" />
+      </Component>
+      <Component Guid="b98d4ee2-f43a-4312-86e9-f76232f98fe2">
+        <File Source="update_config.json" KeyPath="yes" />
+      </Component>
+      <Component Guid="5121192f-d5f7-4f30-9b26-150f01c9ad8f">
+        <File Source="SchoelSurveySuite.lsp" KeyPath="yes" />
+      </Component>
+      <Component Guid="8781b4c8-ff80-4710-acef-df76ca29dd62">
+        <File Source="CAD_Ribbon_Install_Readme.txt" KeyPath="yes" />
+      </Component>
+      <Component Guid="9de31f4d-028d-4d54-aa0c-04750a3f7278">
+        <File Source="assets\schoel_logo.ico" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <DirectoryRef Id="ProgramMenuSchoel">
+      <Component Id="StartMenuShortcuts" Guid="8764cf0e-37f4-45d7-9bd0-31b43a1cb0b2">
+        <Shortcut Id="LaunchShortcut"
+                  Name="Schoel Survey Suite"
+                  Target="[APPFOLDER]SchoelSurveySuite.exe"
+                  WorkingDirectory="APPFOLDER"
+                  Icon="SurveySuiteIcon" />
+        <Shortcut Id="CadReadmeShortcut"
+                  Name="Schoel Survey Suite CAD Ribbon Setup"
+                  Target="[APPFOLDER]CAD_Ribbon_Install_Readme.txt"
+                  WorkingDirectory="APPFOLDER" />
+        <RemoveFolder Id="RemoveProgramMenuSchoel" Directory="ProgramMenuSchoel" On="uninstall" />
+        <RegistryValue Root="HKLM"
+                       Key="Software\Schoel\SurveySuite"
+                       Name="InstallDir"
+                       Type="string"
+                       Value="[APPFOLDER]"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="faeb6a61-4257-454d-a965-6dfe5dc26efe">
+        <Shortcut Id="DesktopLaunchShortcut"
+                  Name="Schoel Survey Suite"
+                  Target="[APPFOLDER]SchoelSurveySuite.exe"
+                  WorkingDirectory="APPFOLDER"
+                  Icon="SurveySuiteIcon" />
+        <RegistryValue Root="HKLM"
+                       Key="Software\Schoel\SurveySuite"
+                       Name="DesktopShortcut"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Package>
+</Wix>
+

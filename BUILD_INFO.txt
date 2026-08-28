@@ -1,0 +1,3 @@
+Schoel Survey Suite Build 2026.03.27.23
+
+Fix: both legal writers are launched as isolated embedded EXEs so CW/CCW logic does not cross between the Bearing Legal Writer and Birmingham Interior Angle Legal Writer.
