@@ -4,7 +4,7 @@
 
 ### Maintenance
 
-- Added a manual-only, non-deleting GitHub-to-SharePoint source mirror with protected credential handling and generated-file exclusions.
+- Added an automatic-on-`main`, manually runnable, non-deleting GitHub-to-SharePoint source mirror with protected credential handling and generated-file exclusions.
 
 ## [25.0.2] - 2026-07-01
 
